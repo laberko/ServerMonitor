@@ -1,0 +1,62 @@
+﻿@model Finn.MVC.Models.servers
+
+@{
+    ViewBag.Title = "Удалить";
+}
+
+<h2>@Model.HostName.ToLower()</h2>
+
+<h3>Вы действительно хотите удалить этот сервер из мониторинга?</h3>
+<h4>(Если на компьютере установлен агент - он снова появится в списке)</h4>
+
+<div>
+	<hr/>
+	@Html.HiddenFor(model => model.ID)
+	@Html.HiddenFor(model => model.OnlineTime)
+	@Html.HiddenFor(model => model.UserID)
+	@Html.HiddenFor(model => model.UtcTime)
+	@Html.HiddenFor(model => model.ServiceTimer)
+	@Html.HiddenFor(model => model.AgentVersion)
+	@Html.HiddenFor(model => model.RAMFree)
+	@Html.HiddenFor(model => model.RAMTotal)
+	@Html.HiddenFor(model => model.CPULoad)
+	@Html.HiddenFor(model => model.Note)
+	@Html.HiddenFor(model => model.IsConfigChanged)
+	@Html.HiddenFor(model => model.TopCpuProcesses)
+	@Html.HiddenFor(model => model.TopRamProcesses)
+	@Html.HiddenFor(model => model.MonitoredServices)
+	@Html.HiddenFor(model => model.HwMonTimeSpan)
+	@Html.HiddenFor(model => model.EvMonTimeSpan)
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ServerGUID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServerGUID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HostName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HostName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Email)
+        </dd>
+    </dl>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Да, удалить" class="btn btn-danger" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

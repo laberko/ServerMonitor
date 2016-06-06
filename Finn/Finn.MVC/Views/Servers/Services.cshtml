@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Finn.MVC.Models.servicemonitor>
+
+@{
+	ViewBag.Title = "Службы";
+	var host = ViewBag.HostName;
+}
+
+<h2>Службы</h2>
+<h4>@host</h4>
+<table class="table">
+    <tr>
+	   <th>
+			@Html.DisplayNameFor(model=>model.ServiceDisplayName)
+		</th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </th>
+    </tr>
+@foreach (var item in Model) {
+    <tr style="@(item.State =="Stopped" ? "color:red" : "")">
+	    <td>
+			@Html.DisplayFor(modelItem => item.ServiceDisplayName)
+		</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeStamp)
+        </td>
+    </tr>
+}
+</table>
+<p>
+	@Html.ActionLink("Настройка", "Edit", new { id = ViewBag.ID }) |
+	@Html.ActionLink("Назад", "Index")
+</p>

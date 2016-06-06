@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a5463850fe934030bda179271fd5a95b" Name="Diagram" ZoomLevel="73">
+        <EntityTypeShape EntityType="candykingdomdbModel.servers" Width="2" PointX="7.875" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="candykingdomdbModel.servicemonitor" Width="1.5" PointX="10.625" PointY="0.625" IsExpanded="true" />
+        <AssociationConnector Association="candykingdomdbModel.serversservicemonitor" />
+        <EntityTypeShape EntityType="candykingdomdbModel.diskmonitor" Width="1.5" PointX="12.75" PointY="0.75" />
+        <AssociationConnector Association="candykingdomdbModel.diskmonitor_ibfk_1" />
+        <EntityTypeShape EntityType="candykingdomdbModel.hardwarehistory" Width="1.5" PointX="14.75" PointY="1.5" />
+        <EntityTypeShape EntityType="candykingdomdbModel.procmonitorcpu" Width="1.5" PointX="14.75" PointY="4" />
+        <EntityTypeShape EntityType="candykingdomdbModel.procmonitorram" Width="1.5" PointX="12.75" PointY="4.375" />
+        <AssociationConnector Association="candykingdomdbModel.hardwarehistory_ibfk_1" />
+        <AssociationConnector Association="candykingdomdbModel.procmonitorcpu_ibfk_1" />
+        <AssociationConnector Association="candykingdomdbModel.procmonitorram_ibfk_1" />
+        <EntityTypeShape EntityType="candykingdomdbModel.eventmonitor" Width="1.5" PointX="16.75" PointY="2.875" />
+        <AssociationConnector Association="candykingdomdbModel.eventmonitor_ibfk_1" />
+        <EntityTypeShape EntityType="candykingdomdbModel.AspNetRoles" Width="1.5" PointX="1" PointY="2.5" />
+        <EntityTypeShape EntityType="candykingdomdbModel.AspNetUserClaims" Width="1.5" PointX="5.75" PointY="4.375" />
+        <EntityTypeShape EntityType="candykingdomdbModel.AspNetUserLogins" Width="1.5" PointX="5.75" PointY="0.875" />
+        <EntityTypeShape EntityType="candykingdomdbModel.AspNetUsers" Width="1.5" PointX="3.5" PointY="1.375" />
+        <AssociationConnector Association="candykingdomdbModel.ApplicationUser_Claims" />
+        <AssociationConnector Association="candykingdomdbModel.ApplicationUser_Logins" />
+        <AssociationConnector Association="candykingdomdbModel.AspNetUserRoles" />
+        <AssociationConnector Association="candykingdomdbModel.servers_ibfk_1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

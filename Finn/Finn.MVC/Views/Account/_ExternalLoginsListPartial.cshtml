@@ -1,0 +1,19 @@
+﻿@model Finn.MVC.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+<h4>Используйте для входа другую службу</h4>
+<hr />
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
+            @Html.AntiForgeryToken()
+            <div id="socialLoginList">
+                <p>
+                    @foreach (var p in loginProviders) {
+	                    <button type="submit" class="btn btn-info btn-lg" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType"
+								title="Войти с помощью учетной записи @p.Caption">@p.AuthenticationType</button>
+                    }
+                </p>
+            </div>
+    }
+}

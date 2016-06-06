@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://laberko.net" elementFormDefault="qualified" targetNamespace="http://laberko.net" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="https://bubblegum.servermonitor.online/CandyKingdom/Server.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="SrvMonParams">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EvMonTimeSpan" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HostName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HwMonTimeSpan" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MonitoredServices" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServerId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ServiceTimer" type="xs:int" />
+      <xs:element minOccurs="0" name="TopCpuProcesses" type="xs:int" />
+      <xs:element minOccurs="0" name="TopRamProcesses" type="xs:int" />
+      <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SrvMonParams" nillable="true" type="tns:SrvMonParams" />
+  <xs:complexType name="SrvMonSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgentVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Config" nillable="true" type="tns:SrvMonParams" />
+      <xs:element minOccurs="0" name="CpuLoad" type="xs:int" />
+      <xs:element minOccurs="0" name="Events" nillable="true" type="tns:ArrayOfEventCount" />
+      <xs:element minOccurs="0" name="LocalDrives" nillable="true" type="tns:ArrayOfDisk" />
+      <xs:element minOccurs="0" name="OnlineTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RamFree" type="xs:int" />
+      <xs:element minOccurs="0" name="RamTotal" type="xs:int" />
+      <xs:element minOccurs="0" name="ServiceStates" nillable="true" type="tns:ArrayOfServiceState" />
+      <xs:element minOccurs="0" name="TopCpuProcesses" nillable="true" type="tns:ArrayOfProc" />
+      <xs:element minOccurs="0" name="TopRamProcesses" nillable="true" type="tns:ArrayOfProc" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SrvMonSummary" nillable="true" type="tns:SrvMonSummary" />
+  <xs:complexType name="ArrayOfEventCount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EventCount" nillable="true" type="tns:EventCount" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEventCount" nillable="true" type="tns:ArrayOfEventCount" />
+  <xs:complexType name="EventCount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:long" />
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="LastTimeStamp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Source" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EventCount" nillable="true" type="tns:EventCount" />
+  <xs:complexType name="ArrayOfDisk">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Disk" nillable="true" type="tns:Disk" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDisk" nillable="true" type="tns:ArrayOfDisk" />
+  <xs:complexType name="Disk">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DriveFree" type="xs:int" />
+      <xs:element minOccurs="0" name="DriveLabel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DriveLetter" nillable="true" type="ser:char" />
+      <xs:element minOccurs="0" name="DriveSize" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeStamp" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Disk" nillable="true" type="tns:Disk" />
+  <xs:complexType name="ArrayOfServiceState">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ServiceState" nillable="true" type="tns:ServiceState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfServiceState" nillable="true" type="tns:ArrayOfServiceState" />
+  <xs:complexType name="ServiceState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DisplayName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeStamp" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ServiceState" nillable="true" type="tns:ServiceState" />
+  <xs:complexType name="ArrayOfProc">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Proc" nillable="true" type="tns:Proc" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProc" nillable="true" type="tns:ArrayOfProc" />
+  <xs:complexType name="Proc">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Pid" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcCpu" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcMemory" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeStamp" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Proc" nillable="true" type="tns:Proc" />
+</xs:schema>

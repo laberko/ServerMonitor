@@ -1,0 +1,39 @@
+﻿@model Finn.MVC.Models.GoogleAuthenticatorViewModel
+@{
+    ViewBag.Title = "Google Authenticator";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+	<hr/>
+	<div class="row">
+		<div class="col-md-8">
+			<h3>1. Добавьте Server Monitor в Google Authenticator</h3>
+			<p>Откройте Google Authenticator на мобильном устройстве и настройте аккаунт, отсканировав QR-код.</p>
+			<h3>2. Введите полученный код</h3>
+			<p>Убедитесь, что Server Monitor корректно добавлен в Google Authenticator, введите полученный 6-значный код ниже, и нажмите "Включить".</p>
+			@using (Html.BeginForm("EnableGoogleAuthenticator", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+			{
+				@Html.AntiForgeryToken()
+				@Html.ValidationSummary(false)
+				@Html.HiddenFor(model => model.SecretKey)
+				@Html.HiddenFor(model => model.BarcodeUrl)
+				<div class="form-group">
+					@Html.LabelFor(m => m.Code, new { @class = "col-md-2 control-label" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(model => model.Code, new { @class = "form-control" })
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						<input type="submit" class="btn btn-success" value="Включить" />
+					</div>
+				</div>
+			}
+		</div>
+		<div class="col-md-4">
+			<img src="https://qrcode.kaywa.com/img.php?s=4&d=@(Model.BarcodeUrl)" alt=""/>
+		</div>
+	</div>
+</div>

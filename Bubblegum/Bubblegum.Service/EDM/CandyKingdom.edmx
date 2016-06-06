@@ -1,0 +1,881 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище candykingdomdbModel" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="longtext" />
+          <Property Name="ClaimValue" Type="longtext" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bool" Nullable="false" />
+          <Property Name="PasswordHash" Type="longtext" />
+          <Property Name="SecurityStamp" Type="longtext" />
+          <Property Name="PhoneNumber" Type="longtext" />
+          <Property Name="PhoneNumberConfirmed" Type="bool" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bool" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" Precision="0" />
+          <Property Name="LockoutEnabled" Type="bool" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="diskmonitor">
+          <Key>
+            <PropertyRef Name="DiskGUID" />
+          </Key>
+          <Property Name="DiskGUID" Type="guid" Nullable="false" />
+          <Property Name="ServerID" Type="int" Nullable="false" />
+          <Property Name="DiskLetter" Type="char" MaxLength="1" />
+          <Property Name="DiskLabel" Type="varchar" MaxLength="128" />
+          <Property Name="DiskSize" Type="int" Nullable="false" />
+          <Property Name="DiskFree" Type="int" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="eventmonitor">
+          <Key>
+            <PropertyRef Name="EventGUID" />
+          </Key>
+          <Property Name="EventGUID" Type="guid" Nullable="false" />
+          <Property Name="ServerID" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Source" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Text" Type="mediumtext" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="LastTimeStamp" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hardwarehistory">
+          <Key>
+            <PropertyRef Name="HwMonGUID" />
+          </Key>
+          <Property Name="HwMonGUID" Type="guid" Nullable="false" />
+          <Property Name="ServerID" Type="int" Nullable="false" />
+          <Property Name="RAMFree" Type="int" Nullable="false" />
+          <Property Name="CPULoad" Type="int" Nullable="false" />
+          <Property Name="TimeStamp" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="procmonitorcpu">
+          <Key>
+            <PropertyRef Name="ProcGUID" />
+          </Key>
+          <Property Name="ProcGUID" Type="guid" Nullable="false" />
+          <Property Name="ServerID" Type="int" Nullable="false" />
+          <Property Name="ProcName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="PID" Type="int" Nullable="false" />
+          <Property Name="ProcCPU" Type="int" />
+          <Property Name="TimeStamp" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="procmonitorram">
+          <Key>
+            <PropertyRef Name="ProcGUID" />
+          </Key>
+          <Property Name="ProcGUID" Type="guid" Nullable="false" />
+          <Property Name="ServerID" Type="int" Nullable="false" />
+          <Property Name="ProcName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="PID" Type="int" Nullable="false" />
+          <Property Name="ProcMemory" Type="int" />
+          <Property Name="TimeStamp" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="servers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServerGUID" Type="guid" Nullable="false" />
+          <Property Name="UserID" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="HostName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="OnlineTime" Type="datetime" Precision="0" />
+          <Property Name="UtcTime" Type="datetime" Precision="0" />
+          <Property Name="IsConfigChanged" Type="bool" Nullable="false" />
+          <Property Name="ServiceTimer" Type="int" Nullable="false" />
+          <Property Name="AgentVersion" Type="varchar" MaxLength="16" />
+          <Property Name="RAMTotal" Type="int" />
+          <Property Name="RAMFree" Type="int" />
+          <Property Name="CPULoad" Type="int" />
+          <Property Name="MonitoredServices" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="TopRamProcesses" Type="int" Nullable="false" />
+          <Property Name="TopCpuProcesses" Type="int" Nullable="false" />
+          <Property Name="HwMonTimeSpan" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="EvMonTimeSpan" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Note" Type="varchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="servicemonitor">
+          <Key>
+            <PropertyRef Name="ServiceGUID" />
+          </Key>
+          <Property Name="ServiceGUID" Type="guid" Nullable="false" />
+          <Property Name="ServerID" Type="int" Nullable="false" />
+          <Property Name="ServiceName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="ServiceDisplayName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="64" />
+          <Property Name="TimeStamp" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
+        <Association Name="ApplicationUser_Claims">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Logins">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Roles">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="diskmonitor_ibfk_1">
+          <End Role="servers" Type="Self.servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="diskmonitor" Type="Self.diskmonitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="diskmonitor">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="eventmonitor_ibfk_1">
+          <End Role="servers" Type="Self.servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="eventmonitor" Type="Self.eventmonitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="eventmonitor">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="hardwarehistory_ibfk_1">
+          <End Role="servers" Type="Self.servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="hardwarehistory" Type="Self.hardwarehistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="hardwarehistory">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IdentityRole_Users">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="procmonitorcpu_ibfk_1">
+          <End Role="servers" Type="Self.servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="procmonitorcpu" Type="Self.procmonitorcpu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="procmonitorcpu">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="procmonitorram_ibfk_1">
+          <End Role="servers" Type="Self.servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="procmonitorram" Type="Self.procmonitorram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="procmonitorram">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="servers_ibfk_1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="servers" Type="Self.servers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="servers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="servicemonitor_ibfk_1">
+          <End Role="servers" Type="Self.servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="servicemonitor" Type="Self.servicemonitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="servicemonitor">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище candykingdomdbModelContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="diskmonitor" EntityType="Self.diskmonitor" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="eventmonitor" EntityType="Self.eventmonitor" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="hardwarehistory" EntityType="Self.hardwarehistory" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="procmonitorcpu" EntityType="Self.procmonitorcpu" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="procmonitorram" EntityType="Self.procmonitorram" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="servers" EntityType="Self.servers" Schema="candykingdomdb" store:Type="Tables" />
+          <EntitySet Name="servicemonitor" EntityType="Self.servicemonitor" Schema="candykingdomdb" store:Type="Tables" />
+          <AssociationSet Name="ApplicationUser_Claims" Association="Self.ApplicationUser_Claims">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Logins" Association="Self.ApplicationUser_Logins">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Roles" Association="Self.ApplicationUser_Roles">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="diskmonitor_ibfk_1" Association="Self.diskmonitor_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="diskmonitor" EntitySet="diskmonitor" />
+          </AssociationSet>
+          <AssociationSet Name="eventmonitor_ibfk_1" Association="Self.eventmonitor_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="eventmonitor" EntitySet="eventmonitor" />
+          </AssociationSet>
+          <AssociationSet Name="hardwarehistory_ibfk_1" Association="Self.hardwarehistory_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="hardwarehistory" EntitySet="hardwarehistory" />
+          </AssociationSet>
+          <AssociationSet Name="IdentityRole_Users" Association="Self.IdentityRole_Users">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="procmonitorcpu_ibfk_1" Association="Self.procmonitorcpu_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="procmonitorcpu" EntitySet="procmonitorcpu" />
+          </AssociationSet>
+          <AssociationSet Name="procmonitorram_ibfk_1" Association="Self.procmonitorram_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="procmonitorram" EntitySet="procmonitorram" />
+          </AssociationSet>
+          <AssociationSet Name="servers_ibfk_1" Association="Self.servers_ibfk_1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="servers" EntitySet="servers" />
+          </AssociationSet>
+          <AssociationSet Name="servicemonitor_ibfk_1" Association="Self.servicemonitor_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="servicemonitor" EntitySet="servicemonitor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="candykingdomdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="servers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServerGUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="UserID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" MaxLength="128" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="servicemonitor" Relationship="candykingdomdbModel.serversservicemonitor" FromRole="servers" ToRole="servicemonitor" />
+          <Property Name="OnlineTime" Type="DateTime" Precision="0" />
+          <Property Name="AgentVersion" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="RAMTotal" Type="Int32" />
+          <Property Name="RAMFree" Type="Int32" />
+          <Property Name="CPULoad" Type="Int32" />
+          <NavigationProperty Name="diskmonitor" Relationship="candykingdomdbModel.diskmonitor_ibfk_1" FromRole="servers" ToRole="diskmonitor" />
+          <NavigationProperty Name="hardwarehistory" Relationship="candykingdomdbModel.hardwarehistory_ibfk_1" FromRole="servers" ToRole="hardwarehistory" />
+          <NavigationProperty Name="procmonitorcpu" Relationship="candykingdomdbModel.procmonitorcpu_ibfk_1" FromRole="servers" ToRole="procmonitorcpu" />
+          <NavigationProperty Name="procmonitorram" Relationship="candykingdomdbModel.procmonitorram_ibfk_1" FromRole="servers" ToRole="procmonitorram" />
+          <Property Name="MonitoredServices" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="TopRamProcesses" Type="Int32" Nullable="false" />
+          <Property Name="TopCpuProcesses" Type="Int32" Nullable="false" />
+          <Property Name="HwMonTimeSpan" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="EvMonTimeSpan" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="HostName" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="eventmonitor" Relationship="candykingdomdbModel.eventmonitor_ibfk_1" FromRole="servers" ToRole="eventmonitor" />
+          <NavigationProperty Name="AspNetUsers" Relationship="candykingdomdbModel.servers_ibfk_1" FromRole="servers" ToRole="AspNetUsers" />
+          <Property Name="ServiceTimer" Type="Int32" Nullable="false" />
+          <Property Name="UtcTime" Type="DateTime" Precision="0" />
+          <Property Name="Note" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="IsConfigChanged" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="servicemonitor">
+          <Key>
+            <PropertyRef Name="ServiceGUID" />
+          </Key>
+          <Property Name="ServiceGUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="ServerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="ServiceName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServiceDisplayName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="servers" Relationship="candykingdomdbModel.serversservicemonitor" FromRole="servicemonitor" ToRole="servers" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="candykingdomdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="servers" EntityType="Self.servers" />
+          <EntitySet Name="servicemonitor" EntityType="Self.servicemonitor" />
+          <AssociationSet Name="serversservicemonitor" Association="candykingdomdbModel.serversservicemonitor">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="servicemonitor" EntitySet="servicemonitor" />
+          </AssociationSet>
+          <EntitySet Name="diskmonitor" EntityType="candykingdomdbModel.diskmonitor" />
+          <AssociationSet Name="diskmonitor_ibfk_1" Association="candykingdomdbModel.diskmonitor_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="diskmonitor" EntitySet="diskmonitor" />
+          </AssociationSet>
+          <EntitySet Name="hardwarehistory" EntityType="candykingdomdbModel.hardwarehistory" />
+          <EntitySet Name="procmonitorcpu" EntityType="candykingdomdbModel.procmonitorcpu" />
+          <EntitySet Name="procmonitorram" EntityType="candykingdomdbModel.procmonitorram" />
+          <AssociationSet Name="hardwarehistory_ibfk_1" Association="candykingdomdbModel.hardwarehistory_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="hardwarehistory" EntitySet="hardwarehistory" />
+          </AssociationSet>
+          <AssociationSet Name="procmonitorcpu_ibfk_1" Association="candykingdomdbModel.procmonitorcpu_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="procmonitorcpu" EntitySet="procmonitorcpu" />
+          </AssociationSet>
+          <AssociationSet Name="procmonitorram_ibfk_1" Association="candykingdomdbModel.procmonitorram_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="procmonitorram" EntitySet="procmonitorram" />
+          </AssociationSet>
+          <EntitySet Name="eventmonitor" EntityType="candykingdomdbModel.eventmonitor" />
+          <AssociationSet Name="eventmonitor_ibfk_1" Association="candykingdomdbModel.eventmonitor_ibfk_1">
+            <End Role="servers" EntitySet="servers" />
+            <End Role="eventmonitor" EntitySet="eventmonitor" />
+          </AssociationSet>
+          <EntitySet Name="AspNetRoles" EntityType="candykingdomdbModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="candykingdomdbModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="candykingdomdbModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="candykingdomdbModel.AspNetUsers" />
+          <AssociationSet Name="ApplicationUser_Claims" Association="candykingdomdbModel.ApplicationUser_Claims">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Logins" Association="candykingdomdbModel.ApplicationUser_Logins">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="candykingdomdbModel.AspNetUserRoles">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+          </AssociationSet>
+          <AssociationSet Name="servers_ibfk_1" Association="candykingdomdbModel.servers_ibfk_1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="servers" EntitySet="servers" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="serversservicemonitor">
+          <End Type="candykingdomdbModel.servers" Role="servers" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="candykingdomdbModel.servicemonitor" Role="servicemonitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="servicemonitor">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="diskmonitor">
+          <Key>
+            <PropertyRef Name="DiskGUID" />
+          </Key>
+          <Property Name="DiskGUID" Type="Guid" Nullable="false" />
+          <Property Name="ServerID" Type="Int32" Nullable="false" />
+          <Property Name="DiskLetter" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DiskSize" Type="Int32" Nullable="false" />
+          <Property Name="DiskFree" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="servers" Relationship="candykingdomdbModel.diskmonitor_ibfk_1" FromRole="diskmonitor" ToRole="servers" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DiskLabel" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="diskmonitor_ibfk_1">
+          <End Type="candykingdomdbModel.servers" Role="servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="candykingdomdbModel.diskmonitor" Role="diskmonitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="diskmonitor">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="hardwarehistory">
+          <Key>
+            <PropertyRef Name="HwMonGUID" />
+          </Key>
+          <Property Name="HwMonGUID" Type="Guid" Nullable="false" />
+          <Property Name="ServerID" Type="Int32" Nullable="false" />
+          <Property Name="RAMFree" Type="Int32" Nullable="false" />
+          <Property Name="CPULoad" Type="Int32" Nullable="false" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="servers" Relationship="candykingdomdbModel.hardwarehistory_ibfk_1" FromRole="hardwarehistory" ToRole="servers" />
+        </EntityType>
+        <EntityType Name="procmonitorcpu">
+          <Key>
+            <PropertyRef Name="ProcGUID" />
+          </Key>
+          <Property Name="ProcGUID" Type="Guid" Nullable="false" />
+          <Property Name="ServerID" Type="Int32" Nullable="false" />
+          <Property Name="ProcName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PID" Type="Int32" Nullable="false" />
+          <Property Name="ProcCPU" Type="Int32" />
+          <NavigationProperty Name="servers" Relationship="candykingdomdbModel.procmonitorcpu_ibfk_1" FromRole="procmonitorcpu" ToRole="servers" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="procmonitorram">
+          <Key>
+            <PropertyRef Name="ProcGUID" />
+          </Key>
+          <Property Name="ProcGUID" Type="Guid" Nullable="false" />
+          <Property Name="ServerID" Type="Int32" Nullable="false" />
+          <Property Name="ProcName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PID" Type="Int32" Nullable="false" />
+          <Property Name="ProcMemory" Type="Int32" />
+          <NavigationProperty Name="servers" Relationship="candykingdomdbModel.procmonitorram_ibfk_1" FromRole="procmonitorram" ToRole="servers" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <Association Name="hardwarehistory_ibfk_1">
+          <End Type="candykingdomdbModel.servers" Role="servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="candykingdomdbModel.hardwarehistory" Role="hardwarehistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="hardwarehistory">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="procmonitorcpu_ibfk_1">
+          <End Type="candykingdomdbModel.servers" Role="servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="candykingdomdbModel.procmonitorcpu" Role="procmonitorcpu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="procmonitorcpu">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="procmonitorram_ibfk_1">
+          <End Type="candykingdomdbModel.servers" Role="servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="candykingdomdbModel.procmonitorram" Role="procmonitorram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="procmonitorram">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="eventmonitor">
+          <Key>
+            <PropertyRef Name="EventGUID" />
+          </Key>
+          <Property Name="EventGUID" Type="Guid" Nullable="false" />
+          <Property Name="ServerID" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Source" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Text" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="servers" Relationship="candykingdomdbModel.eventmonitor_ibfk_1" FromRole="eventmonitor" ToRole="servers" />
+          <Property Name="LastTimeStamp" Type="DateTime" Precision="0" Nullable="false" />
+        </EntityType>
+        <Association Name="eventmonitor_ibfk_1">
+          <End Type="candykingdomdbModel.servers" Role="servers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="candykingdomdbModel.eventmonitor" Role="eventmonitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="servers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="eventmonitor">
+              <PropertyRef Name="ServerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="candykingdomdbModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="candykingdomdbModel.ApplicationUser_Claims" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="candykingdomdbModel.ApplicationUser_Logins" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="0" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="candykingdomdbModel.ApplicationUser_Claims" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="candykingdomdbModel.ApplicationUser_Logins" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="candykingdomdbModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="servers" Relationship="candykingdomdbModel.servers_ibfk_1" FromRole="AspNetUsers" ToRole="servers" />
+        </EntityType>
+        <Association Name="ApplicationUser_Claims">
+          <End Type="candykingdomdbModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="candykingdomdbModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Logins">
+          <End Type="candykingdomdbModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="candykingdomdbModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="candykingdomdbModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+          <End Type="candykingdomdbModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+        </Association>
+        <Association Name="servers_ibfk_1">
+          <End Type="candykingdomdbModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="candykingdomdbModel.servers" Role="servers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="servers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище candykingdomdbModelContainer" CdmEntityContainer="candykingdomdbEntities">
+          <EntitySetMapping Name="servers">
+            <EntityTypeMapping TypeName="candykingdomdbModel.servers">
+              <MappingFragment StoreEntitySet="servers">
+                <ScalarProperty Name="IsConfigChanged" ColumnName="IsConfigChanged" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="UtcTime" ColumnName="UtcTime" />
+                <ScalarProperty Name="ServiceTimer" ColumnName="ServiceTimer" />
+                <ScalarProperty Name="HostName" ColumnName="HostName" />
+                <ScalarProperty Name="EvMonTimeSpan" ColumnName="EvMonTimeSpan" />
+                <ScalarProperty Name="HwMonTimeSpan" ColumnName="HwMonTimeSpan" />
+                <ScalarProperty Name="TopCpuProcesses" ColumnName="TopCpuProcesses" />
+                <ScalarProperty Name="TopRamProcesses" ColumnName="TopRamProcesses" />
+                <ScalarProperty Name="MonitoredServices" ColumnName="MonitoredServices" />
+                <ScalarProperty Name="CPULoad" ColumnName="CPULoad" />
+                <ScalarProperty Name="RAMFree" ColumnName="RAMFree" />
+                <ScalarProperty Name="RAMTotal" ColumnName="RAMTotal" />
+                <ScalarProperty Name="AgentVersion" ColumnName="AgentVersion" />
+                <ScalarProperty Name="OnlineTime" ColumnName="OnlineTime" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ServerGUID" ColumnName="ServerGUID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servicemonitor">
+            <EntityTypeMapping TypeName="candykingdomdbModel.servicemonitor">
+              <MappingFragment StoreEntitySet="servicemonitor">
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="ServiceGUID" ColumnName="ServiceGUID" />
+                <ScalarProperty Name="ServerID" ColumnName="ServerID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ServiceDisplayName" ColumnName="ServiceDisplayName" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="diskmonitor">
+            <EntityTypeMapping TypeName="candykingdomdbModel.diskmonitor">
+              <MappingFragment StoreEntitySet="diskmonitor">
+                <ScalarProperty Name="DiskLabel" ColumnName="DiskLabel" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="DiskFree" ColumnName="DiskFree" />
+                <ScalarProperty Name="DiskSize" ColumnName="DiskSize" />
+                <ScalarProperty Name="DiskLetter" ColumnName="DiskLetter" />
+                <ScalarProperty Name="ServerID" ColumnName="ServerID" />
+                <ScalarProperty Name="DiskGUID" ColumnName="DiskGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hardwarehistory">
+            <EntityTypeMapping TypeName="candykingdomdbModel.hardwarehistory">
+              <MappingFragment StoreEntitySet="hardwarehistory">
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="CPULoad" ColumnName="CPULoad" />
+                <ScalarProperty Name="RAMFree" ColumnName="RAMFree" />
+                <ScalarProperty Name="ServerID" ColumnName="ServerID" />
+                <ScalarProperty Name="HwMonGUID" ColumnName="HwMonGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="procmonitorcpu">
+            <EntityTypeMapping TypeName="candykingdomdbModel.procmonitorcpu">
+              <MappingFragment StoreEntitySet="procmonitorcpu">
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="ProcCPU" ColumnName="ProcCPU" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="ProcName" ColumnName="ProcName" />
+                <ScalarProperty Name="ServerID" ColumnName="ServerID" />
+                <ScalarProperty Name="ProcGUID" ColumnName="ProcGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="procmonitorram">
+            <EntityTypeMapping TypeName="candykingdomdbModel.procmonitorram">
+              <MappingFragment StoreEntitySet="procmonitorram">
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="ProcMemory" ColumnName="ProcMemory" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="ProcName" ColumnName="ProcName" />
+                <ScalarProperty Name="ServerID" ColumnName="ServerID" />
+                <ScalarProperty Name="ProcGUID" ColumnName="ProcGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="eventmonitor">
+            <EntityTypeMapping TypeName="candykingdomdbModel.eventmonitor">
+              <MappingFragment StoreEntitySet="eventmonitor">
+                <ScalarProperty Name="LastTimeStamp" ColumnName="LastTimeStamp" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ServerID" ColumnName="ServerID" />
+                <ScalarProperty Name="EventGUID" ColumnName="EventGUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="candykingdomdbModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="candykingdomdbModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="candykingdomdbModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="candykingdomdbModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="candykingdomdbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="SynchronizePropertyFacets" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

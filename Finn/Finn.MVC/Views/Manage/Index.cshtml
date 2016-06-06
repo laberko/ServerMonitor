@@ -1,0 +1,74 @@
+﻿@model Finn.MVC.Models.IndexViewModel
+
+<h2>@ViewBag.Login</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Изменение параметров учетной записи</h4>
+    <hr />
+	<dl class="dl-horizontal">
+		<dt>Пароль:</dt>
+		<dd>
+			[
+			@(Model.HasPassword ? Html.ActionLink("Смена пароля", "ChangePassword") : Html.ActionLink("Создать", "SetPassword"))
+			]
+		</dd>
+		<dt>Внешние имена входа:</dt>
+		<dd>
+			@Model.Logins.Count [
+			@Html.ActionLink("Настроить", "ManageLogins") ]
+		</dd>
+	</dl>
+	<hr/>
+
+<h4>Двухфакторная проверка подлинности</h4>
+@if (Model.TwoFactor)
+{
+	using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+	{
+		@Html.AntiForgeryToken()
+		<text>
+			Включено
+			<input type="submit" value="Отключить" class="btn btn-danger" />
+		</text>
+	}
+}
+else
+{
+	using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+	{
+		@Html.AntiForgeryToken()
+		<text>
+			Отключено
+			<input type="submit" value="Включить" class="btn btn-success"/>
+		</text>
+	}
+}
+
+@if (Model.TwoFactor)
+{
+	<h5><b> Google Authenticator</b></h5>
+	if (Model.IsGoogleAuthenticatorEnabled)
+	{
+		using (Html.BeginForm("DisableGoogleAuthenticator", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+		{
+			@Html.AntiForgeryToken()
+			<text>
+				Включено
+				<input type="submit" value="Отключить" class="btn btn-danger"/>
+			</text>
+		}
+	}
+	else
+	{
+		using (Html.BeginForm("EnableGoogleAuthenticator", "Manage", FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+		{
+			@Html.AntiForgeryToken()
+			<text>
+				Отключено
+				<input type="submit" value="Включить" class="btn btn-success"/>
+			</text>
+		}
+	}
+}
+</div>

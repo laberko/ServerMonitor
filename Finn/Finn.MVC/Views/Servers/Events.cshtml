@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Finn.MVC.Models.eventmonitor>
+
+@{
+	ViewBag.Title = "Ошибки";
+	var host = ViewBag.HostName;
+	var hours = ViewBag.EvMonTimeSpanHrs;
+}
+
+<h2>Ошибки</h2>
+<h4>Статистика по @host за @hours ч.</h4>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Count)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Source)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Code)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Text)
+		</th>
+		<th style="white-space: nowrap;">
+			@Html.DisplayNameFor(model => model.LastTimeStamp)
+		</th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Count)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Source)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Code)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Text)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.LastTimeStamp)
+			</td>
+		</tr>
+	}
+</table>
+<p>
+	@Html.ActionLink("Настройка", "Edit", new { id = ViewBag.ID }) |
+	@Html.ActionLink("Назад", "Index")
+</p>
+
