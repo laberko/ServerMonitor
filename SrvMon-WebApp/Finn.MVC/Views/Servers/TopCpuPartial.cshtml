@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Finn.MVC.Models.procmonitorcpu>
+
+<h4>Наибольшая загрузка процессора на @ViewBag.HostName @Model.First().TimeStamp</h4>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.ProcName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.PID)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ProcCPU)
+		</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProcName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PID)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProcCPU)
+			</td>
+		</tr>
+	}
+</table>

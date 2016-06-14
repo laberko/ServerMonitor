@@ -1,0 +1,28 @@
+﻿@{
+	ViewBag.Title = "Процессы";
+}
+<h2>@ViewBag.Title</h2>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<div id="TopRam"></div>
+<script type="text/javascript">
+	google.charts.load('current', { 'packages': ['corechart'], callback: loadChart });
+	function loadChart() {
+		$.ajax({
+			url: '@Url.Action("TopRam", "Servers")',
+				contentType: 'application/html; charset=utf-8',
+				type: 'GET',
+				dataType: 'html',
+				cache: false
+			})
+			.done(function(result) {
+				$('#TopRam').html(result);
+				setInterval(function() {
+					$("#TopRam").load('@Url.Action("TopRam", "Servers")');
+				}, 30000);
+			});
+	}
+</script>
+<p>
+	@Html.ActionLink("Настройка", "Edit", new { id = ViewBag.ID }) |
+	@Html.ActionLink("Назад", "Index")
+</p>

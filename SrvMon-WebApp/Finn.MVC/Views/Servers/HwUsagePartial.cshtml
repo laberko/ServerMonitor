@@ -1,0 +1,31 @@
+﻿@{
+	var ramTotal = ViewBag.RamTotal;
+}
+<script type="text/javascript">
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = new google.visualization.DataTable();
+		data.addColumn('datetime', 'Время');
+		data.addColumn('number', 'CPU (%)');
+		data.addColumn('number', 'RAM (%)');
+		data.addRows([
+			@foreach (var item in Model)
+			{
+				<text>
+		@{
+			var ramUsedPercent = ((float) (ramTotal - item.RAMFree))*100/(float) ramTotal;
+		}
+		[new Date(@item.TimeStamp.Year,@item.TimeStamp.Month-1,@item.TimeStamp.Day,@item.TimeStamp.Hour,@item.TimeStamp.Minute,@item.TimeStamp.Second), @item.CPULoad, @((int) ramUsedPercent)],
+	</text>
+			}
+		]);
+		var options = {
+			'width': 1200,
+			'height': 500,
+			hAxis: { format: 'dd/MM HH:mm' }
+		};
+		var chart = new google.charts.Line(document.getElementById('chart'));
+		chart.draw(data, google.charts.Line.convertOptions(options));
+	}
+</script>
+<div id="chart"></div>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Finn.MVC.Models.procmonitorram>
+	@{
+		var ramTotal = ViewBag.RamTotal;
+		var ramFree = ViewBag.RamFree;
+		var allItemsMb = 0;
+		var othersMb = 0;
+	}
+<h4>Наибольшая загрузка памяти на @ViewBag.HostName @Model.First().TimeStamp</h4>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.ProcName)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.PID)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ProcMemory)
+		</th>
+	</tr>
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProcName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PID)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProcMemory)
+			</td>
+		</tr>
+	}
+</table>
+<script type="text/javascript">
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Имя процесса');
+		data.addColumn('number', 'Загрузка RAM (МБ)');
+		data.addRows([
+			@foreach (var item in Model)
+		{
+	<text>
+	['@item.ProcName', @item.ProcMemory],
+	@{
+		allItemsMb += item.ProcMemory.GetValueOrDefault();
+		othersMb = ramTotal - ramFree - allItemsMb;
+	}
+	</text>
+	}
+	['Остальные', @othersMb],
+	['Свободно', @ramFree]
+	]);
+		var options = {
+			'width': 700,
+			'height': 400
+		};
+		var chart = new google.visualization.PieChart(document.getElementById('chart'));
+		chart.draw(data, options);
+	}
+</script>
+<div id="chart"></div>

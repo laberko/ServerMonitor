@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Подробная информация";
+}
+<h2>@Model.HostName.ToLower()</h2>
+<h4>Подробная информация</h4>
+<hr />
+<div id="details"></div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<script type="text/javascript">
+	$.ajax({
+				url: '@Url.Action("Details", "Servers")',
+				contentType: 'application/html; charset=utf-8',
+				type: 'GET',
+				dataType: 'html',
+				cache: false
+			})
+			.done(function(result) {
+				$('#details').html(result);
+				setInterval(function() {
+					$("#details").load('@Url.Action("Details", "Servers")');
+				}, 30000);
+			});
+</script>
+<p>
+    @Html.ActionLink("Настройка", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Назад", "Index")
+</p>

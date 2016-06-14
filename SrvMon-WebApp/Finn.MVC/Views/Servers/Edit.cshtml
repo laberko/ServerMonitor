@@ -1,0 +1,80 @@
+﻿@model Finn.MVC.Models.servers
+
+@{
+    ViewBag.Title = "Настройка мониторинга";
+}
+
+<h2>@Model.HostName.ToLower()</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Настройка мониторинга</h4>
+        <hr />
+        @Html.HiddenFor(model => model.ID)
+		@Html.HiddenFor(model => model.ServerGUID)
+		@Html.HiddenFor(model => model.OnlineTime)
+		@Html.HiddenFor(model => model.UserID)
+		@Html.HiddenFor(model => model.HostName)
+		@Html.HiddenFor(model => model.UtcTime)
+		@Html.HiddenFor(model => model.ServiceTimer)
+		@Html.HiddenFor(model => model.AgentVersion)
+		@Html.HiddenFor(model => model.RAMFree)
+		@Html.HiddenFor(model => model.RAMTotal)
+		@Html.HiddenFor(model => model.CPULoad)
+		@Html.HiddenFor(model => model.Note)
+		@Html.HiddenFor(model => model.MonitoredServices)
+		@Html.HiddenFor(model => model.HwMonTimeSpan)
+		@Html.HiddenFor(model => model.EvMonTimeSpan)
+	    <dl class="dl-horizontal">
+		    <dt style="white-space: nowrap;">
+			    @Html.DisplayNameFor(model => model.TopRamProcesses)
+		    </dt>
+		    <dd>
+			    @Html.DropDownListFor(model => model.TopRamProcesses, Enumerable.Range(1, 10).Select(x => new SelectListItem {Text = x.ToString()}))
+		    </dd>
+	    </dl>
+	    <dl class="dl-horizontal">
+		    <dt style="white-space: nowrap;">
+			    @Html.DisplayNameFor(model => model.TopCpuProcesses)
+		    </dt>
+		    <dd>
+			    @Html.DropDownListFor(model => model.TopCpuProcesses, Enumerable.Range(1, 10).Select(x => new SelectListItem {Text = x.ToString()}))
+		    </dd>
+	    </dl>
+		<dl class="dl-horizontal">
+			<dt style="white-space:nowrap;">
+				@Html.DisplayNameFor(model => model.HwMonTimeSpanHrs)
+			</dt>
+			<dd>
+				@Html.DropDownListFor(model => model.HwMonTimeSpanHrs, Enumerable.Range(1, 6).Select(x => new SelectListItem { Text = x.ToString() }))
+			</dd>
+		</dl>
+		<dl class="dl-horizontal">
+			<dt style="white-space:nowrap;">
+				@Html.DisplayNameFor(model => model.EvMonTimeSpanHrs)
+			</dt>
+			<dd>
+				@Html.DropDownListFor(model => model.EvMonTimeSpanHrs, Enumerable.Range(1, 23).Select(x => new SelectListItem { Text = x.ToString() }))
+			</dd>
+		</dl>
+		<dl class="dl-horizontal">
+			<dt style="white-space:nowrap;">
+				@Html.DisplayNameFor(model => model.ServiceTimerMin)
+			</dt>
+			<dd>
+				@Html.DropDownListFor(model => model.ServiceTimerMin, Enumerable.Range(1, 15).Select(x => new SelectListItem { Text = x.ToString() }))
+			</dd>
+		</dl>
+	    <div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Сохранить" class="btn btn-success" />
+			</div>
+		</div>
+</div>
+}
+<div>
+    @Html.ActionLink("Назад", "Index")
+</div>

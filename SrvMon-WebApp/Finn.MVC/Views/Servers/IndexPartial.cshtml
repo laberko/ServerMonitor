@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Finn.MVC.Models.servers>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HostName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OnlineTime)
+        </th>
+	    <th>
+		    @Html.DisplayNameFor(model => model.RamFreePercent)
+	    </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CpuLoadPercent)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+	<tr style="@(item.ServerState =="Не в сети" ? "color:red" : "")">
+		<td rowspan="2">
+			@Html.DisplayFor(modelItem => item.HostName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.OnlineTime)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.RamFreePercent)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.CpuLoadPercent)
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3">
+			@Html.ActionLink("Настроить", "Edit", new { id = item.ID }) |
+			@Html.ActionLink("Подробно", "Details", new { id = item.ID }) |
+			@Html.ActionLink("История", "HwUsage", new { id = item.ID }) |
+			@Html.ActionLink("Службы", "Services", new { id = item.ID }) |
+			@Html.ActionLink("Ошибки", "Events", new { id = item.ID }) |
+			@Html.ActionLink("Диск", "DiskUsage", new { id = item.ID }) |
+			@Html.ActionLink("Топ (RAM)", "TopRam", new { id = item.ID }) |
+			@Html.ActionLink("Топ (CPU)", "TopCpu", new { id = item.ID }) |
+			@Html.ActionLink("Удалить", "Delete", new { id = item.ID })
+		</td>
+	</tr>
+}
+</table>

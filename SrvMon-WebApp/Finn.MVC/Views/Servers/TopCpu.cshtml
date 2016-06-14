@@ -1,0 +1,26 @@
+﻿@{
+	ViewBag.Title = "Процессы";
+}
+<h2>@ViewBag.Title</h2>
+<div id="topcpu"></div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<script type="text/javascript">
+	$.ajax({
+				url: '@Url.Action("TopCpu", "Servers")',
+				contentType: 'application/html; charset=utf-8',
+				type: 'GET',
+				dataType: 'html',
+				cache: false
+			})
+			.done(function(result) {
+				$('#topcpu').html(result);
+				setInterval(function() {
+					$("#topcpu").load('@Url.Action("TopCpu", "Servers")');
+				}, 30000);
+			});
+</script>
+<h5>Данные в таблице получены с помощью счетчиков производительности Windows, поэтому загрузка процессора является приблизительной величиной.</h5>
+<p>
+	@Html.ActionLink("Настройка", "Edit", new { id = ViewBag.ID }) |
+	@Html.ActionLink("Назад", "Index")
+</p>

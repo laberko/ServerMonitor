@@ -1,0 +1,50 @@
+﻿@using System.Globalization
+@using System.Threading
+@model IEnumerable<Finn.MVC.Models.diskmonitor>
+@{
+	Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+	ViewBag.Title = "Локальные диски";
+}
+<h2>@ViewBag.Title</h2>
+<h4>Свободное пространство на разделах локальных дисков @ViewBag.HostName</h4>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', { 'packages': ['corechart'] });
+@foreach (var item in Model) {
+	<text>
+			@{
+				var functionName = "drawChart" + item.DiskLetter;
+				var functionStart = "function " + functionName + "()";
+				var diskFreeGb = ((float)item.DiskFree)/1024;
+				var diskOccupiedGb = ((float)item.DiskSize/1024) - diskFreeGb;
+			}
+			google.charts.setOnLoadCallback(@functionName);
+			@functionStart
+			{
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Объем');
+        data.addColumn('number', 'ГБ');
+        data.addRows([
+          ['Свободно', @diskFreeGb],
+          ['Занято', @diskOccupiedGb]
+        ]);
+        var options = {
+        	'title': 'Диск @item.DiskLetter',
+             'width':400,
+             'height': 300
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('@item.DiskLetter'));
+        chart.draw(data, options);
+      }
+	</text>
+}
+</script>
+@foreach (var item in Model)
+{
+	<div id="@item.DiskLetter"></div>
+}
+<p>
+	@Html.ActionLink("Настройка", "Edit", new { id = ViewBag.ID }) |
+	@Html.ActionLink("Назад", "Index")
+</p>
+

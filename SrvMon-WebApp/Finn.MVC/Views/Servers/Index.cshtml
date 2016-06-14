@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Мои сервера";
+}
+<h2>@ViewBag.Title</h2>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<div id="servers"></div>
+<script type="text/javascript">
+	$.ajax({
+				url: '@Url.Action("Index", "Servers")',
+				contentType: 'application/html; charset=utf-8',
+				type: 'GET',
+				dataType: 'html',
+				cache: false
+			})
+			.done(function(result) {
+				$('#servers').html(result);
+				setInterval(function() {
+					$("#servers").load('@Url.Action("Index", "Servers")');
+				}, 30000);
+			});
+</script>

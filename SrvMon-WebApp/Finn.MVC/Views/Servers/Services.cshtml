@@ -1,0 +1,26 @@
+﻿@{
+	ViewBag.Title = "Службы";
+}
+<h2>@ViewBag.Title</h2>
+<h4>@ViewBag.HostName</h4>
+<div id="services"></div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<script type="text/javascript">
+	$.ajax({
+				url: '@Url.Action("Services", "Servers")',
+				contentType: 'application/html; charset=utf-8',
+				type: 'GET',
+				dataType: 'html',
+				cache: false
+			})
+			.done(function(result) {
+				$('#services').html(result);
+				setInterval(function() {
+					$("#services").load('@Url.Action("Services", "Servers")');
+				}, 30000);
+			});
+</script>
+<p>
+	@Html.ActionLink("Настройка", "Edit", new { id = ViewBag.ID }) |
+	@Html.ActionLink("Назад", "Index")
+</p>
