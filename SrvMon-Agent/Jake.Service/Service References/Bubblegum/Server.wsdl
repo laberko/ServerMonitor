@@ -129,6 +129,12 @@
   <wsdl:message name="IServer_GetConfigChanged_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetConfigChangedResponse" />
   </wsdl:message>
+  <wsdl:message name="IServer_Auth_InputMessage">
+    <wsdl:part name="parameters" element="tns:Auth" />
+  </wsdl:message>
+  <wsdl:message name="IServer_Auth_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AuthResponse" />
+  </wsdl:message>
   <wsdl:message name="IServer_GetConfig_InputMessage">
     <wsdl:part name="parameters" element="tns:GetConfig" />
   </wsdl:message>
@@ -146,6 +152,10 @@
       <wsdl:input wsaw:Action="http://bubblegum.laberko.net/IServer/GetConfigChanged" message="tns:IServer_GetConfigChanged_InputMessage" />
       <wsdl:output wsaw:Action="http://bubblegum.laberko.net/IServer/GetConfigChangedResponse" message="tns:IServer_GetConfigChanged_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="Auth">
+      <wsdl:input wsaw:Action="http://bubblegum.laberko.net/IServer/Auth" message="tns:IServer_Auth_InputMessage" />
+      <wsdl:output wsaw:Action="http://bubblegum.laberko.net/IServer/AuthResponse" message="tns:IServer_Auth_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetConfig">
       <wsdl:input wsaw:Action="http://bubblegum.laberko.net/IServer/GetConfig" message="tns:IServer_GetConfig_InputMessage" />
       <wsdl:output wsaw:Action="http://bubblegum.laberko.net/IServer/GetConfigResponse" message="tns:IServer_GetConfig_OutputMessage" />
@@ -160,6 +170,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetConfigChanged">
       <soap12:operation soapAction="http://bubblegum.laberko.net/IServer/GetConfigChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Auth">
+      <soap12:operation soapAction="http://bubblegum.laberko.net/IServer/Auth" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

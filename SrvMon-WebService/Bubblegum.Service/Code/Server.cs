@@ -12,7 +12,7 @@ namespace Bubblegum.Service.Code
 	public partial class Server : IServer
 	{
 		//user authorization using MySQL database
-		private static bool Auth(string userName, string password)
+		public bool Auth(string userName, string password)
 		{
 			var passed = false;
 			try
@@ -34,5 +34,4 @@ namespace Bubblegum.Service.Code
 			}
 		}
 	}
-	
 }

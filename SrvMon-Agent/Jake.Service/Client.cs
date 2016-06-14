@@ -28,6 +28,7 @@ namespace Jake.Service
 		 {
 			 _client.Close();
 		 }
+		//create wcf client object
 		private ServerClient GetClient()
 		{
 			try
@@ -61,6 +62,7 @@ namespace Jake.Service
 				return null;
 			}
 		}
+		//was configuration changed on server?
 		public bool ConfigChanged(Guid serverId)
 		{
 			try
@@ -98,6 +100,7 @@ namespace Jake.Service
 			}
 			return false;
 		}
+		//update agent configuration from server
 		public SrvMonParams GetServerConfig(SrvMonParams config)
 		{
 			if ((_client == null) || (_client.State != CommunicationState.Opened))
@@ -120,6 +123,7 @@ namespace Jake.Service
 			}
 			return config;
 		}
+		//send info to server
 		public override void OnTimer(object sender, EventArgs args)
 		{
 			if ((_client == null) || (_client.State != CommunicationState.Opened))

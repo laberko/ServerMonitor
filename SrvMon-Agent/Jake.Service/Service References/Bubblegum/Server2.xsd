@@ -28,6 +28,7 @@
       <xs:element minOccurs="0" name="ServiceStates" nillable="true" type="tns:ArrayOfServiceState" />
       <xs:element minOccurs="0" name="TopCpuProcesses" nillable="true" type="tns:ArrayOfProc" />
       <xs:element minOccurs="0" name="TopRamProcesses" nillable="true" type="tns:ArrayOfProc" />
+      <xs:element minOccurs="0" name="UtcTime" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SrvMonSummary" nillable="true" type="tns:SrvMonSummary" />

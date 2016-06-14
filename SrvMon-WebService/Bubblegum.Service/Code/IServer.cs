@@ -11,6 +11,8 @@ namespace Bubblegum.Service.Code
 		[OperationContract]
 		bool GetConfigChanged(Guid serverId);
 		[OperationContract]
+		bool Auth(string userName, string password);
+		[OperationContract]
 		SrvMonParams GetConfig(SrvMonParams jakeParams, string password);
 		[OperationContract]
 		Task SendDataAsync(SrvMonSummary summary, string password);

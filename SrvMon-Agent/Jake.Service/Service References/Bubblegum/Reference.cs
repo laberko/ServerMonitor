@@ -21,6 +21,12 @@ namespace Jake.Service.Bubblegum {
         [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/GetConfigChanged", ReplyAction="http://bubblegum.laberko.net/IServer/GetConfigChangedResponse")]
         System.Threading.Tasks.Task<bool> GetConfigChangedAsync(System.Guid serverId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/Auth", ReplyAction="http://bubblegum.laberko.net/IServer/AuthResponse")]
+        bool Auth(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/Auth", ReplyAction="http://bubblegum.laberko.net/IServer/AuthResponse")]
+        System.Threading.Tasks.Task<bool> AuthAsync(string userName, string password);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/GetConfig", ReplyAction="http://bubblegum.laberko.net/IServer/GetConfigResponse")]
         Common.SrvMonParams GetConfig(Common.SrvMonParams jakeParams, string password);
         
@@ -67,6 +73,14 @@ namespace Jake.Service.Bubblegum {
         
         public System.Threading.Tasks.Task<bool> GetConfigChangedAsync(System.Guid serverId) {
             return base.Channel.GetConfigChangedAsync(serverId);
+        }
+        
+        public bool Auth(string userName, string password) {
+            return base.Channel.Auth(userName, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AuthAsync(string userName, string password) {
+            return base.Channel.AuthAsync(userName, password);
         }
         
         public Common.SrvMonParams GetConfig(Common.SrvMonParams jakeParams, string password) {
