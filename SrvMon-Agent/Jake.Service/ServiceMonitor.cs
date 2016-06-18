@@ -27,7 +27,9 @@ namespace Jake.Service
 			{
 				if (_summary.Config != null)
 				{
-					services.AddRange(from service in _summary.Config.MonitoredServices.Split(null).Distinct()
+					services.AddRange(
+						from service in _summary.Config.MonitoredServices.Split(null).Distinct()
+						where service.Length>0
 						let srv = new ServiceController(service)
 						where srv.ServiceName == service
 						select srv);

@@ -3,6 +3,7 @@ using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Common;
 using Bubblegum.Service.EDM;
 //get agent configuration
@@ -10,7 +11,11 @@ namespace Bubblegum.Service.Code
 {
 	public partial class Server
 	{
-		public SrvMonParams GetConfig(SrvMonParams jakeParams, string password)
+		public async Task<SrvMonParams> GetConfigAsync(SrvMonParams jakeParams, string password)
+		{
+			return await Task.Factory.StartNew(() => GetConfig(jakeParams, password));
+		}
+		private static SrvMonParams GetConfig(SrvMonParams jakeParams, string password)
 		{
 			using (var db = new candykingdomdbEntities())
 			{

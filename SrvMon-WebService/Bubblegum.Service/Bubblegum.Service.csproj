@@ -128,12 +128,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\IServer.cs" />
+    <Compile Include="Code\Server_auth.cs" />
     <Compile Include="Code\Server_diskmonitor.cs" />
     <Compile Include="Code\Server_eventmonitor.cs" />
     <Compile Include="Code\Server_getconfig.cs" />
     <Compile Include="Code\Server_getconfigchanged.cs" />
     <Compile Include="Code\Server_hardwarehistory.cs" />
-    <Compile Include="Code\Server_senddataasync.cs" />
+    <Compile Include="Code\Server_senddata.cs" />
     <Compile Include="Code\Server_procmonitor.cs" />
     <Compile Include="Code\Server_servicemonitor.cs" />
     <Compile Include="Code\Server.cs" />

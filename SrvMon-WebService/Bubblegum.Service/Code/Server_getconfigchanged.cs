@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 using Bubblegum.Service.EDM;
 using Common;
 
@@ -9,7 +10,11 @@ namespace Bubblegum.Service.Code
 {
 	public partial class Server
 	{
-		public bool GetConfigChanged(Guid serverId)
+		public async Task<bool> GetConfigChangedAsync(Guid serverId)
+		{
+			return await Task.Factory.StartNew(() => GetConfigChanged(serverId));
+		}
+		private static bool GetConfigChanged(Guid serverId)
 		{
 			using (var db = new candykingdomdbEntities())
 			{

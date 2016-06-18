@@ -96,12 +96,12 @@ namespace Jake.Service
 				return null;
 			}
 		}
-		public override void OnTimer(object sender, EventArgs args)
+		public override async void OnTimerAsync(object sender, EventArgs args)
 		{
-			if ((_summary.Config != null) && (_client.ConfigChanged(_summary.Config.ServerId)))
+			if ((_summary.Config != null) && (await _client.ConfigChanged(_summary.Config.ServerId)))
 			{
 				//get config from server and save to registry
-				SaveConfig(_client.GetServerConfig(_summary.Config));
+				SaveConfig(await _client.GetServerConfig(_summary.Config));
 			}
 			//load config from registry
 			_summary.Config = LoadConfig();
@@ -110,9 +110,8 @@ namespace Jake.Service
 			_summary.Config = null;
 			"Run Confugurator!".WriteLog(EventLogEntryType.Error, 14);
 		}
-		public override async void OnTimerAsync(object sender, EventArgs args)
+		public override void OnTimer(object sender, EventArgs args)
 		{
-			await Task.Run(() => OnTimer(sender, args));
 		}
 	}
 }

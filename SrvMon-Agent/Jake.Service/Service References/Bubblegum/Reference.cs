@@ -14,29 +14,29 @@ namespace Jake.Service.Bubblegum {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://bubblegum.laberko.net", ConfigurationName="Bubblegum.IServer")]
     public interface IServer {
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/GetConfigChanged", ReplyAction="http://bubblegum.laberko.net/IServer/GetConfigChangedResponse")]
-        bool GetConfigChanged(System.Guid serverId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/GetConfigChanged", ReplyAction="http://bubblegum.laberko.net/IServer/GetConfigChangedResponse")]
+
+		[System.ServiceModel.OperationContractAttribute(Action = "http://bubblegum.laberko.net/IServer/GetConfigChanged", ReplyAction = "http://bubblegum.laberko.net/IServer/GetConfigChangedResponse")]
+		bool GetConfigChanged(System.Guid serverId);
+
+		[System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/GetConfigChanged", ReplyAction="http://bubblegum.laberko.net/IServer/GetConfigChangedResponse")]
         System.Threading.Tasks.Task<bool> GetConfigChangedAsync(System.Guid serverId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/Auth", ReplyAction="http://bubblegum.laberko.net/IServer/AuthResponse")]
-        bool Auth(string userName, string password);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/Auth", ReplyAction="http://bubblegum.laberko.net/IServer/AuthResponse")]
+
+		[System.ServiceModel.OperationContractAttribute(Action = "http://bubblegum.laberko.net/IServer/Auth", ReplyAction = "http://bubblegum.laberko.net/IServer/AuthResponse")]
+		bool Auth(string userName, string password);
+
+		[System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/Auth", ReplyAction="http://bubblegum.laberko.net/IServer/AuthResponse")]
         System.Threading.Tasks.Task<bool> AuthAsync(string userName, string password);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/GetConfig", ReplyAction="http://bubblegum.laberko.net/IServer/GetConfigResponse")]
-        Common.SrvMonParams GetConfig(Common.SrvMonParams jakeParams, string password);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/GetConfig", ReplyAction="http://bubblegum.laberko.net/IServer/GetConfigResponse")]
+
+		[System.ServiceModel.OperationContractAttribute(Action = "http://bubblegum.laberko.net/IServer/GetConfig", ReplyAction = "http://bubblegum.laberko.net/IServer/GetConfigResponse")]
+		Common.SrvMonParams GetConfig(Common.SrvMonParams jakeParams, string password);
+
+		[System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/GetConfig", ReplyAction="http://bubblegum.laberko.net/IServer/GetConfigResponse")]
         System.Threading.Tasks.Task<Common.SrvMonParams> GetConfigAsync(Common.SrvMonParams jakeParams, string password);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/SendData", ReplyAction="http://bubblegum.laberko.net/IServer/SendDataResponse")]
-        void SendData(Common.SrvMonSummary summary, string password);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/SendData", ReplyAction="http://bubblegum.laberko.net/IServer/SendDataResponse")]
+
+		[System.ServiceModel.OperationContractAttribute(Action = "http://bubblegum.laberko.net/IServer/SendData", ReplyAction = "http://bubblegum.laberko.net/IServer/SendDataResponse")]
+		void SendData(Common.SrvMonSummary summary, string password);
+
+		[System.ServiceModel.OperationContractAttribute(Action="http://bubblegum.laberko.net/IServer/SendData", ReplyAction="http://bubblegum.laberko.net/IServer/SendDataResponse")]
         System.Threading.Tasks.Task SendDataAsync(Common.SrvMonSummary summary, string password);
     }
     
@@ -66,36 +66,40 @@ namespace Jake.Service.Bubblegum {
         public ServerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
-        
-        public bool GetConfigChanged(System.Guid serverId) {
-            return base.Channel.GetConfigChanged(serverId);
-        }
-        
-        public System.Threading.Tasks.Task<bool> GetConfigChangedAsync(System.Guid serverId) {
+
+		public bool GetConfigChanged(System.Guid serverId)
+		{
+			return base.Channel.GetConfigChanged(serverId);
+		}
+
+		public System.Threading.Tasks.Task<bool> GetConfigChangedAsync(System.Guid serverId) {
             return base.Channel.GetConfigChangedAsync(serverId);
         }
-        
-        public bool Auth(string userName, string password) {
-            return base.Channel.Auth(userName, password);
-        }
-        
-        public System.Threading.Tasks.Task<bool> AuthAsync(string userName, string password) {
+
+		public bool Auth(string userName, string password)
+		{
+			return base.Channel.Auth(userName, password);
+		}
+
+		public System.Threading.Tasks.Task<bool> AuthAsync(string userName, string password) {
             return base.Channel.AuthAsync(userName, password);
         }
-        
-        public Common.SrvMonParams GetConfig(Common.SrvMonParams jakeParams, string password) {
-            return base.Channel.GetConfig(jakeParams, password);
-        }
-        
-        public System.Threading.Tasks.Task<Common.SrvMonParams> GetConfigAsync(Common.SrvMonParams jakeParams, string password) {
+
+		public Common.SrvMonParams GetConfig(Common.SrvMonParams jakeParams, string password)
+		{
+			return base.Channel.GetConfig(jakeParams, password);
+		}
+
+		public System.Threading.Tasks.Task<Common.SrvMonParams> GetConfigAsync(Common.SrvMonParams jakeParams, string password) {
             return base.Channel.GetConfigAsync(jakeParams, password);
         }
-        
-        public void SendData(Common.SrvMonSummary summary, string password) {
-            base.Channel.SendData(summary, password);
-        }
-        
-        public System.Threading.Tasks.Task SendDataAsync(Common.SrvMonSummary summary, string password) {
+
+		public void SendData(Common.SrvMonSummary summary, string password)
+		{
+			base.Channel.SendData(summary, password);
+		}
+
+		public System.Threading.Tasks.Task SendDataAsync(Common.SrvMonSummary summary, string password) {
             return base.Channel.SendDataAsync(summary, password);
         }
     }

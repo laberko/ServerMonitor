@@ -45,6 +45,10 @@ namespace Common
 			AgentVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 		}
 		//serialize to xml file
+		private async Task SerializeAsync(string path)
+		{
+			await Task.Factory.StartNew(() => Serialize(path));
+		}
 		private void Serialize(string path)
 		{
 			try
@@ -110,7 +114,7 @@ namespace Common
 			}
 			return errorList;
 		}
-		public async void OnTimer(object sender, EventArgs args)
+		public async void OnTimerAsync(object sender, EventArgs args)
 		{
 			if (Config == null)
 			{
@@ -121,7 +125,7 @@ namespace Common
 			OnlineTime = now.ToString("yyyy-MM-dd HH:mm:ss");
 			UtcTime = now.ToUniversalTime().ToString("yyyy-MM-dd HH:mm:ss");
 			//write to xml file
-			await Task.Run(() => Serialize(Path.Combine(LogPath, "Summary.xml")));
+			await SerializeAsync(Path.Combine(LogPath, "Summary.xml"));
 			//write services states to Event Log
 			var sb = new StringBuilder();
 			sb.AppendLine("Current states of services:");

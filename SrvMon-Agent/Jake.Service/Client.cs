@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 using Common;
 using Jake.Service.Bubblegum;
 
-//invoke methods on server
+//invoke operations on wcf proxy class object
 namespace Jake.Service
 {
 	public class Client:AbstractModule
 	{
+		//proxy class object
 		private ServerClient _client;
 		public Client(SrvMonSummary summary):base(summary)
 		{
@@ -28,7 +29,7 @@ namespace Jake.Service
 		 {
 			 _client.Close();
 		 }
-		//create wcf client object
+		//create wcf proxy object
 		private ServerClient GetClient()
 		{
 			try
@@ -63,7 +64,7 @@ namespace Jake.Service
 			}
 		}
 		//was configuration changed on server?
-		public bool ConfigChanged(Guid serverId)
+		public async Task<bool> ConfigChanged(Guid serverId)
 		{
 			try
 			{
@@ -71,7 +72,7 @@ namespace Jake.Service
 				{
 					_client = GetClient();
 				}
-				return _client.GetConfigChanged(serverId);
+				return await _client.GetConfigChangedAsync(serverId);
 			}
 			catch (SocketException ex)
 			{
@@ -101,7 +102,7 @@ namespace Jake.Service
 			return false;
 		}
 		//update agent configuration from server
-		public SrvMonParams GetServerConfig(SrvMonParams config)
+		public async Task<SrvMonParams> GetServerConfig(SrvMonParams config)
 		{
 			if ((_client == null) || (_client.State != CommunicationState.Opened))
 			{
@@ -109,7 +110,7 @@ namespace Jake.Service
 			}
 			try
 			{
-				return _client.GetConfig(config, "UserPassword".GetRegString());
+				return await _client.GetConfigAsync(config, "UserPassword".GetRegString());
 			}
 			catch (FaultException ex)
 			{

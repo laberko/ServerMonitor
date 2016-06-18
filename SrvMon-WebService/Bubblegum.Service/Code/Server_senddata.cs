@@ -10,10 +10,12 @@ namespace Bubblegum.Service.Code
 {
 	public partial class Server
 	{
-		public Task SendDataAsync(SrvMonSummary summary, string password)
+		public async Task SendDataAsync(SrvMonSummary summary, string password)
 		{
-			return Task.Run(() =>
-			{
+			await Task.Factory.StartNew(() => SendData(summary, password));
+		}
+		private static void SendData(SrvMonSummary summary, string password)
+		{
 				using (var db = new candykingdomdbEntities())
 				{
 					try
@@ -89,7 +91,6 @@ namespace Bubblegum.Service.Code
 						(ex.Message + ex.InnerException).WriteLog(EventLogEntryType.Error, 100);
 					}
 				}
-			});
 		}
 	}
 }

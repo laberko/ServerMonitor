@@ -21,13 +21,13 @@ namespace Jake.Service
 			var processMonitor = new ProcessMonitor(summary);
 			var evMonitor = new EventMonitor(summary);
 			timer.Elapsed += OnTimer;
-			timer.Elapsed += config.OnTimer;
+			timer.Elapsed += config.OnTimerAsync;
 			timer.Elapsed += hwMonitor.OnTimerAsync;
 			timer.Elapsed += diskMonitor.OnTimerAsync;
 			timer.Elapsed += serviceMonitor.OnTimerAsync;
 			timer.Elapsed += processMonitor.OnTimerAsync;
 			timer.Elapsed += evMonitor.OnTimerAsync;
-			timer.Elapsed += summary.OnTimer;
+			timer.Elapsed += summary.OnTimerAsync;
 			timer.Elapsed += client.OnTimerAsync;
 			timer.Start();
 		}
