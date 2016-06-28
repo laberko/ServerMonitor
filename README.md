@@ -9,7 +9,7 @@ Monitoring features:
 - tracking the most memory/CPU consuming processes.
 
 The project includes at client side:
-- Server Monitor Agent - windows monitoring service;
+- [Server Monitor Agent](SrvMon-Agent-Configurator) - windows monitoring service;
 - Configuration utility.
 
 The server side:
