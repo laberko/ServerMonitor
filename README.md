@@ -14,7 +14,7 @@ The project includes at client side:
 
 The server side:
 - [WCF-based web-service](SrvMon-WebService) receiving data from Server Monitor Agent;
-- [ASP.NET MVC-based web-application](SrvMon-WebApp) as remote monitoring interface ([the website](https://servermonitor.online/Servers) is in Russian only at the moment).
+- [ASP.NET MVC-based web-application](SrvMon-WebApp) as remote monitoring interface ([the website](https://servermonitor.online) is in Russian only at the moment).
 
 Also the project includes:
 - [common libraries](SrvMon-Common);
