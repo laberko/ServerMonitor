@@ -1,0 +1,206 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		x:Name="window" x:Class="Bmo.MainWindow"
+        mc:Ignorable="d" Height="600" Width="600" Icon="bmo.ico" SnapsToDevicePixels="True"
+		HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+		Background="#FFDDDDDD">
+	<DockPanel x:Name="dockPanel" >
+		<StatusBar DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Background="{x:Null}">
+			<StatusBarItem Background="{x:Null}">
+				<TextBlock x:Name="bottomTextBlock" FontSize="12" TextWrapping="Wrap" VerticalAlignment="Center"/>
+			</StatusBarItem>
+		</StatusBar>
+		<TabPanel x:Name="tabPanel" d:LayoutOverrides="LeftPosition, RightPosition" DockPanel.Dock="Top">
+			<TabControl x:Name="tabControl" SelectionChanged="TabControl_SelectionChanged"
+						Height="{Binding ActualHeight, ElementName=tabPanel}"
+						Width="{Binding ActualWidth, ElementName=tabPanel}" Background="White">
+				<TabItem x:Name="authTab" FontSize="22" Padding="20,2">
+					<TabItem.Background>
+						<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+							<GradientStop Color="White" Offset="0"/>
+							<GradientStop Color="#FFDDDDDD" Offset="1"/>
+						</LinearGradientBrush>
+					</TabItem.Background>
+					<Grid x:Name="authTabGrid" UseLayoutRounding="True" Background="#FFF0F0F0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition MaxWidth="40" Width="40"/>
+							<ColumnDefinition x:Name="centerColumn"/>
+							<ColumnDefinition MaxWidth="40" Width="40"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+							<RowDefinition x:Name="loginRow" Height="40" MaxHeight="40" MinHeight="40"/>
+							<RowDefinition/>
+							<RowDefinition x:Name="passwordRow" Height="40" MaxHeight="40" MinHeight="40"/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<TextBlock x:Name="loginTextBlock" TextAlignment="Center"
+							FontSize="24" d:LayoutOverrides="TopMargin, BottomMargin" Grid.Column="1" UseLayoutRounding="True" VerticalAlignment="Bottom"/>
+						<TextBox x:Name="loginTextBox"
+							Grid.Row="1" TextWrapping="Wrap" FontSize="24" TextAlignment="Center"
+							Width="{Binding Width, ElementName=centerColumn}"
+							Height="{Binding Height, ElementName=loginRow}"
+							HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+							MaxLength="100" MaxLines="1" Grid.Column="1"
+							AutomationProperties.IsRequiredForForm="True" UseLayoutRounding="True" Background="White"/>
+						<TextBlock x:Name="passwordTextBlock" TextWrapping="Wrap" TextAlignment="Center" FontSize="24" UseLayoutRounding="True"
+							VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="1"/>
+						<PasswordBox x:Name="passwordBox"
+							Grid.Row="3" FontSize="24"
+							Width="{Binding Width, ElementName=centerColumn}"
+							Height="{Binding Height, ElementName=passwordRow}"
+							HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+							MaxLength="100" Grid.Column="1" UseLayoutRounding="True"/>
+						<Button x:Name="loginButton" Grid.Row="4" Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"
+							FontSize="24" Cursor="Hand" ClickMode="Press" Click="loginButton_Click" IsDefault="True" Grid.Column="1" UseLayoutRounding="True"/>
+						<Button x:Name="regButton" Grid.Row="5" Width="250" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"
+							FontSize="16" Cursor="Hand" ClickMode="Press" Click="regButton_Click" Grid.Column="1" UseLayoutRounding="True"/>
+						<ProgressBar x:Name="authBar" Grid.Row="6" IsEnabled="False" BorderThickness="0" Background="{x:Null}" Grid.ColumnSpan="3" Height="5"
+							VerticalAlignment="Bottom" Width="{Binding ActualWidth, ElementName=authGrid}" VerticalContentAlignment="Bottom"
+							ScrollViewer.VerticalScrollBarVisibility="Disabled" UseLayoutRounding="True" HorizontalContentAlignment="Stretch">
+							<ProgressBar.Foreground>
+								<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.HighlightColorKey}}"/>
+							</ProgressBar.Foreground>
+						</ProgressBar>
+					</Grid>
+				</TabItem>
+				<TabItem x:Name="paramTab" FontSize="22" Padding="20,2" IsEnabled="False">
+					<TabItem.Background>
+						<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+							<GradientStop Color="White" Offset="0"/>
+							<GradientStop Color="#FFDDDDDD" Offset="1"/>
+						</LinearGradientBrush>
+					</TabItem.Background>
+					<Grid x:Name="paramTabGrid" UseLayoutRounding="True" Background="#FFF0F0F0"
+						  d:LayoutOverrides="LeftPosition, RightPosition">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="40" MaxHeight="40" MinHeight="40"/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition MaxWidth="40" MinWidth="40" Width="40"/>
+							<ColumnDefinition MaxWidth="60" MinWidth="60" Width="60"/>
+							<ColumnDefinition MaxWidth="40" MinWidth="40" Width="40"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Border BorderBrush="{x:Null}"
+							Width="{Binding ActualWidth, ElementName=paramGrid}" Background="#FFDDDDDD"
+							Grid.ColumnSpan="4" Height="40">
+							<TextBlock x:Name="paramHeader" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+						</Border>
+						<ComboBox x:Name="topRamCombo" IsSynchronizedWithCurrentItem="True"
+							UseLayoutRounding="True" FontSize="16" Height="30" Grid.Column="1" Grid.Row="1" d:LayoutOverrides="Height" VerticalContentAlignment="Center"/>
+						<ComboBox x:Name="topCpuCombo" IsSynchronizedWithCurrentItem="True"
+							UseLayoutRounding="True" FontSize="16" Height="30" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="2" d:LayoutOverrides="Height"/>
+						<ComboBox x:Name="historyCombo" IsSynchronizedWithCurrentItem="True"
+							UseLayoutRounding="True" FontSize="16" Height="30" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="3" d:LayoutOverrides="Height"/>
+						<ComboBox x:Name="errorCombo" IsSynchronizedWithCurrentItem="True"
+							UseLayoutRounding="True" FontSize="16" Height="30" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="4" d:LayoutOverrides="Height"/>
+						<ComboBox x:Name="timerCombo" IsSynchronizedWithCurrentItem="True"
+							UseLayoutRounding="True" FontSize="16" Height="30" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="5" d:LayoutOverrides="Height"/>
+						<TextBlock x:Name="topRamText" Grid.Column="3" Grid.Row="1" TextWrapping="Wrap" UseLayoutRounding="True" FontSize="16" VerticalAlignment="Center"/>
+						<TextBlock x:Name="topCpuText" Grid.Column="3" Grid.Row="2" TextWrapping="Wrap" UseLayoutRounding="True" FontSize="16" VerticalAlignment="Center"/>
+						<TextBlock x:Name="historyText" Grid.Column="3" Grid.Row="3" TextWrapping="Wrap" UseLayoutRounding="True" FontSize="16" VerticalAlignment="Center"/>
+						<TextBlock x:Name="errorText" Grid.Column="3" Grid.Row="4" TextWrapping="Wrap" UseLayoutRounding="True" FontSize="16" VerticalAlignment="Center"/>
+						<TextBlock x:Name="timerText" Grid.Column="3" Grid.Row="5" TextWrapping="Wrap" UseLayoutRounding="True" FontSize="16" VerticalAlignment="Center"/>
+					</Grid>
+				</TabItem>
+				<TabItem x:Name="srvTab" FontSize="22" Padding="20,2" IsEnabled="False">
+					<TabItem.Background>
+						<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+							<GradientStop Color="White" Offset="0"/>
+							<GradientStop Color="#FFDDDDDD" Offset="1"/>
+						</LinearGradientBrush>
+					</TabItem.Background>
+					<Grid x:Name="srvTabGrid"
+						ScrollViewer.HorizontalScrollBarVisibility="Auto"
+						ScrollViewer.VerticalScrollBarVisibility="Auto"
+						UseLayoutRounding="True" Background="#FFF0F0F0">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="40" MaxHeight="40" MinHeight="40"/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Border x:Name="srvBorder" BorderBrush="{x:Null}"
+							Width="{Binding ActualWidth, ElementName=srvGrid}" Background="#FFDDDDDD">
+							<TextBlock x:Name="srvHeader" TextWrapping="Wrap" Margin="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+						</Border>
+						<ListView x:Name="srvListView"
+							ItemsSource="{Binding}" SelectionMode="Multiple" Width="{Binding ActualWidth, ElementName=srvGrid}" 
+							FontSize="14" Background="#FFF0F0F0" BorderThickness="0" Grid.Row="1" IsSynchronizedWithCurrentItem="True">
+							<ListView.View>
+								<GridView AllowsColumnReorder="False">
+									<GridViewColumn Width="30">
+										<GridViewColumn.CellTemplate>
+											<DataTemplate>
+												<CheckBox IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
+													Checked="srvCheckBox_Checked" Unchecked="srvCheckBox_Checked"/>
+											</DataTemplate>
+										</GridViewColumn.CellTemplate>
+									</GridViewColumn>
+									<GridViewColumn x:Name="srvNameColumn" DisplayMemberBinding="{Binding ServiceDisplayName}" Width="400"/>
+									<GridViewColumn x:Name="srvStateColumn" DisplayMemberBinding="{Binding State}" Width="100"/>
+								</GridView>
+							</ListView.View>
+						</ListView>
+					</Grid>
+				</TabItem>
+				<TabItem x:Name="startTab" FontSize="22" Padding="20,2" IsEnabled="False">
+					<TabItem.Background>
+						<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+							<GradientStop Color="White" Offset="0"/>
+							<GradientStop Color="#FFDDDDDD" Offset="1"/>
+						</LinearGradientBrush>
+					</TabItem.Background>
+					<Grid x:Name="startTabGrid" UseLayoutRounding="True" Background="#FFF0F0F0" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="40" MaxHeight="40" MinHeight="40"/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<Border x:Name="startBorder" BorderBrush="{x:Null}" Background="#FFDDDDDD"
+							Height="40" VerticalAlignment="Top" Width="{Binding ActualWidth, ElementName=startGrid}">
+							<TextBlock x:Name="startedTextBlock" TextWrapping="Wrap"
+							VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+						</Border>
+						<Button x:Name="startAgentButton" Grid.Row="1" Click="startAgentButton_Click"
+							HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="40"
+							FontSize="24" Cursor="Hand" IsDefault="True" ClickMode="Press"/>
+						<Border BorderBrush="{x:Null}"
+							Width="{Binding ActualWidth, ElementName=startGrid}" Grid.Row="2">
+							<TextBlock x:Name="nextTextBlock1" TextWrapping="Wrap" FontSize="24"
+							HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed"/>
+						</Border>
+						<Border BorderBrush="{x:Null}"
+							Width="{Binding ActualWidth, ElementName=startGrid}" Grid.Row="3">
+							<TextBlock x:Name="nextTextBlock2" TextWrapping="Wrap" FontSize="18"
+							HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed"/>
+						</Border>
+						<Button x:Name="siteButton" Content="Мои сервера" Grid.Row="4"
+							FontSize="24" Cursor="Hand" Click="siteButton_Click" UseLayoutRounding="True"
+							Width="250" Height="40" Visibility="Collapsed"/>
+						<Border BorderBrush="{x:Null}"
+							Width="{Binding ActualWidth, ElementName=startGrid}" Grid.Row="5">
+							<TextBlock x:Name="nextTextBlock3" TextWrapping="Wrap" FontSize="18"
+							HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+								<Hyperlink NavigateUri="mailto:mike@laberko.net" RequestNavigate="sendMail_Click">
+									<Run x:Name="connectRun" Text="Свяжитесь с разработчиком: mike@laberko.net"/>
+								</Hyperlink>
+							</TextBlock>
+						</Border>
+					</Grid>
+				</TabItem>
+			</TabControl>
+		</TabPanel>
+	</DockPanel>
+</Window>

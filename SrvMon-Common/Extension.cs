@@ -14,7 +14,7 @@ namespace Common
 		{
 			try
 			{
-				var regKey = Registry.LocalMachine.OpenSubKey("Software").OpenSubKey("CandyKingdom");
+				var regKey = Registry.LocalMachine.OpenSubKey("Software", true).CreateSubKey("CandyKingdom");
 				return regKey?.GetValue(key) != null ? regKey.GetValue(key).ToString() : null;
 			}
 			catch (NullReferenceException ex)
@@ -32,16 +32,12 @@ namespace Common
 		{
 			try
 			{
-				var regKey = Registry.LocalMachine.OpenSubKey("Software").OpenSubKey("CandyKingdom", true);
+				var regKey = Registry.LocalMachine.OpenSubKey("Software", true).CreateSubKey("CandyKingdom");
 				regKey?.SetValue(key, value);
 			}
-			catch (NullReferenceException ex)
+			catch (Exception ex) when (ex is NullReferenceException || ex is UnauthorizedAccessException)
 			{
-				(ex.Message + ex.InnerException).WriteLog(EventLogEntryType.Error, 21);
-			}
-			catch (UnauthorizedAccessException ex)
-			{
-				(ex.Message + ex.InnerException).WriteLog(EventLogEntryType.Error, 21);
+				(ex.Message + ex.InnerException + ex.StackTrace).WriteLog(EventLogEntryType.Error, 21);
 			}
 		}
 		public static async void WriteLog(this string log, EventLogEntryType type, int id)

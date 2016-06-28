@@ -76,7 +76,7 @@ namespace Common
 					errorList.Add("Wrong free RAM size.");
 				if (CpuLoad > 100)
 					errorList.Add("Wrong CPU load.");
-				if ((ServiceStates.Length > 20) || (Config.MonitoredServices.Split(null).Distinct().Count() > 20))
+				if ((ServiceStates.Length > 40) || (Config.MonitoredServices.Split(null).Distinct().Count() > 40))
 					errorList.Add("Too many services.");
 				if ((TopCpuProcesses.Length > 10) || (Config.TopCpuProcesses > 10))
 					errorList.Add("Too many top processes (CPU).");

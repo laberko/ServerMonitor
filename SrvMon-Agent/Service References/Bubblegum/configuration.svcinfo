@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configurationSnapshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:schemas-microsoft-com:xml-wcfconfigurationsnapshot">
+  <behaviors />
+  <bindings>
+    <binding digest="System.ServiceModel.Configuration.WS2007HttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data messageEncoding=&quot;Mtom&quot; name=&quot;BubblegumEndpoint&quot;&gt;&lt;reliableSession enabled=&quot;true&quot; /&gt;&lt;security mode=&quot;TransportWithMessageCredential&quot;&gt;&lt;message clientCredentialType=&quot;UserName&quot; /&gt;&lt;transport clientCredentialType=&quot;None&quot; /&gt;&lt;/security&gt;&lt;/Data&gt;" bindingType="ws2007HttpBinding" name="BubblegumEndpoint" />
+  </bindings>
+  <endpoints>
+    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;https://bubblegum.servermonitor.online/CandyKingdom/Server.svc&quot; binding=&quot;ws2007HttpBinding&quot; bindingConfiguration=&quot;BubblegumEndpoint&quot; contract=&quot;Bubblegum.IServer&quot; name=&quot;BubblegumEndpoint&quot; /&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;https://bubblegum.servermonitor.online/CandyKingdom/Server.svc&quot; binding=&quot;ws2007HttpBinding&quot; bindingConfiguration=&quot;BubblegumEndpoint&quot; contract=&quot;Bubblegum.IServer&quot; name=&quot;BubblegumEndpoint&quot; /&gt;" contractName="Bubblegum.IServer" name="BubblegumEndpoint" />
+  </endpoints>
+</configurationSnapshot>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.Serialization;
 //service monitor parameters
 namespace Common
@@ -12,9 +13,9 @@ namespace Common
 		[DataMember]
 		public string HostName;
 		[DataMember]
-		public string UserId;
+		public string UserId = "";
 		[DataMember]
-		public string MonitoredServices;
+		public string MonitoredServices = "";
 		[DataMember]
 		public int TopRamProcesses = 5;
 		[DataMember]
@@ -29,6 +30,28 @@ namespace Common
 		{
 			ServerId = Guid.NewGuid();
 			HostName = Environment.MachineName;
+		}
+		public void SaveConfig()
+		{
+			try
+			{
+				Environment.MachineName.SetRegString("HostName");
+				ServerId.ToString().SetRegString("ServerId");
+				UserId.SetRegString("UserId");
+				MonitoredServices.SetRegString("MonitoredServices");
+				TopRamProcesses.ToString().SetRegString("TopRamProcesses");
+				TopCpuProcesses.ToString().SetRegString("TopCpuProcesses");
+				HwMonTimeSpan.SetRegString("HwMonTimeSpan");
+				EvMonTimeSpan.SetRegString("EvMonTimeSpan");
+				ServiceTimer.ToString().SetRegString("ServiceTimer");
+				"Bubblegum".SetRegString("ServiceLogin");
+				"CandyKingdom".SetRegString("ServicePassword");
+				"Updated configuration in registry!".WriteLog(EventLogEntryType.Warning, 22);
+			}
+			catch (NullReferenceException ex)
+			{
+				(ex.Message + ex.InnerException).WriteLog(EventLogEntryType.Error, 22);
+			}
 		}
 	}
 }
