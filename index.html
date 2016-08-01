@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Servermonitor by laberko</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/laberko/ServerMonitor">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Servermonitor</h1>
+            <h2>Server Monitor</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/laberko/ServerMonitor/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/laberko/ServerMonitor/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a id="server-monitor" class="anchor" href="#server-monitor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Server Monitor</h1>
+
+<p>(<a href="https://servermonitor.online">servermonitor.online</a>)</p>
+
+<p>Server Monitor is a secure remote monitoring system for Windows-based servers and workstations. At this moment the project is at early development stage. Server Monitor is easy to install and configure. It is also secure: no back-doors and no remote access.</p>
+
+<p>Monitoring features:</p>
+
+<ul>
+<li>statistics of memory and CPU usage for several hours;</li>
+<li>tracking the status of selected services;</li>
+<li>statistics for errors in Windows Log;</li>
+<li>disk space monitoring;</li>
+<li>tracking the most memory/CPU consuming processes.</li>
+</ul>
+
+<p>The project includes at client side:</p>
+
+<ul>
+<li>
+<a href="SrvMon-Agent">Server Monitor Agent</a> - windows monitoring service;</li>
+<li>
+<a href="SrvMon-Agent-Configurator">Configuration utility</a>.</li>
+</ul>
+
+<p>The server side:</p>
+
+<ul>
+<li>
+<a href="SrvMon-WebService">WCF-based web-service</a> receiving data from Server Monitor Agent;</li>
+<li>
+<a href="SrvMon-WebApp">ASP.NET MVC-based web-application</a> as remote monitoring interface (<a href="https://servermonitor.online">the website</a> is in Russian only at the moment).</li>
+</ul>
+
+<p>Also the project includes:</p>
+
+<ul>
+<li>
+<a href="SrvMon-Common">common libraries</a>;</li>
+<li>MySQL database.</li>
+</ul>
+
+<p>An acceptable level of safety implemented:</p>
+
+<ul>
+<li>data transfer from Server Monitor Agent to WCF service using SSL transport security with client credentials;</li>
+<li>exclusive use of HTTPS protocol in web-application</li>
+<li>ASP.NET Identity system reduces the risk of leakage of credentials to a minimum (based on <a href="https://github.com/radenkozec/MySqlIdentity">MySql.AspNet.Identity</a>)</li>
+<li>two-factor authentication with Google Authenticator or e-mail code;</li>
+<li>confirmation of new accounts via e-mail (based on <a href="https://github.com/sendgrid/sendgrid-csharp">SendGrid</a>);</li>
+<li>authentication using third-party identity providers (only Google at the moment);</li>
+<li>account lock-out when brute-force password hacking.</li>
+</ul>
+
+<p>Further development:</p>
+
+<ul>
+<li>extension of monitoring features range;</li>
+<li>implementation of user notification features;</li>
+<li>web-application internationalization (only Russian at the moment; configuration utility is globalized);</li>
+<li>web-application design development (basic at the moment).</li>
+</ul>
+
+<p>Client software system requirements:</p>
+
+<ul>
+<li>Windows Sever 2008 (Windows 7) or later;</li>
+<li>.NET Framework 4.5.2 or later.</li>
+</ul>
+
+<p><a href="https://github.com/laberko/ServerMonitor/releases/latest">Download Server Monitor Agent</a>.</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/laberko">laberko</a> can be found on <a href="https://github.com/laberko/ServerMonitor">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
